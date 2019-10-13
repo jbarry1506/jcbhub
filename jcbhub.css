@@ -1,0 +1,26 @@
+html {
+    background-color: coral;
+}
+h1 {
+    align-content: center;
+}
+.header {
+    background-color: chocolate;
+    height: 500px;
+    width: auto;
+    padding: 10px;
+}
+.pennyvid {
+    height: 640px;
+    width: 480px;
+    align-self: auto;
+}
+#pennypic {
+    width: 80%;
+    align-self: left;
+}
+#pennytext {
+    width: 30%;
+    align-self: right;
+    align-content: center;
+}
