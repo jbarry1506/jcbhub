@@ -2,4 +2,4 @@
 
 import shutil
 
-shutil.move("~/Pictures/PiCam/teststill_gomiami.jpg", "~/Code/jcbhub/latest.jpg")
+shutil.move("/home/Pictures/PiCam/teststill_gomiami.jpg", "/home/Code/jcbhub/latest.jpg")
