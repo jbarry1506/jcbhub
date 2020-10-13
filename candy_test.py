@@ -3,6 +3,7 @@
 from time import sleep
 from picamera import PiCamera
 import shutil
+import subprocess
 # import jenkins
 import pprint
 import vars
@@ -71,7 +72,14 @@ def reset_pennywise():
     pass
 
 
+def push_pic():
+    subprocess.call("git", "add -A")
+    subprocess.call("git", "commit -m 'latest'")
+    subprocess.call("git", "push")
+
+
 snap_pic()
 move_file()
+push_pic()
 # server = jenkins.Jenkins(vars.jenkins_server, username=vars.jenkins_user, password=vars.jenkins_password)
 # pprint.pprint(server.get_all_jobs())
