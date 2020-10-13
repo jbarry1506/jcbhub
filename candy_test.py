@@ -77,13 +77,10 @@ def push_pic():
     current_time = str(datetime.datetime.now)
     commit_message = "commit -m 'latest"+current_time
     print(commit_message)
-    subprocess.run("git add -A", check=True, shell=True)
-    subprocess.run(f"git commit -m '{commit_message}'", check=True, shell=True)
-    subprocess.run("git push", check=True, shell=True)
-    # with open("commits.txt") 
-    # subprocess.call(["git", "add -A"])
-    # subprocess.call(["git", commit_message])
-    # subprocess.call(["git", "push"])
+
+    subprocess.call(["git", "add", "-A"])
+    subprocess.call(["git", "commit", "-m", commit_message])
+    subprocess.call(["git", "push"])
 
 
 snap_pic()
