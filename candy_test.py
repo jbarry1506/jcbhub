@@ -76,9 +76,12 @@ def reset_pennywise():
 def push_pic():
     current_time = str(datetime.datetime.now)
     commit_message = "commit -m 'latest"+current_time
-    subprocess.call(["git", "add -A"])
-    subprocess.call(["git", commit_message])
-    subprocess.call(["git", "push"])
+    subprocess.run("git add -A")
+    subprocess.run(f"git commit -m '{commit_message}'")
+    subprocess.run("git push")
+    # subprocess.call(["git", "add -A"])
+    # subprocess.call(["git", commit_message])
+    # subprocess.call(["git", "push"])
 
 
 snap_pic()
