@@ -42,7 +42,7 @@ def snap_pic():
     camera.start_preview()
     # Camera warm-up time
     sleep(2)
-    camera.capture('latest.jpg')
+    camera.capture('/home/pi/Pictures/PiCam/latest.jpg')
 
 
 def countdown():
