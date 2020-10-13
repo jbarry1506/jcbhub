@@ -19,5 +19,42 @@ import vars
 
 # shutil.move("/home/pi/Pictures/PiCam/teststill_gomiami.jpg", "/home/pi/Code/jcbhub/latest.jpg")
 
+
+def button_detect():
+    pass
+
+
+def logic_switch():
+    pass
+
+
+def snap_pic():
+    pass
+
+
+def candy_drop():
+    pass
+
+
+def pennywise():
+    pass
+
+
+def sound_effect():
+    pass
+
+
+def move_file():
+    pass
+
+
+def jenkins_build():
+    pass
+
+
+def reset_pennywise():
+    pass
+
+
 server = jenkins.Jenkins(vars.jenkins_server, username=vars.jenkins_user, password=vars.jenkins_password)
 pprint.pprint(server.get_all_jobs())
