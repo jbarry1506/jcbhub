@@ -73,9 +73,9 @@ def reset_pennywise():
 
 
 def push_pic():
-    subprocess.call("git", "add -A")
-    subprocess.call("git", "commit -m 'latest'")
-    subprocess.call("git", "push")
+    subprocess.call(["git", "add -A"])
+    subprocess.call(["git", "commit -m 'latest'"])
+    subprocess.call(["git", "push"])
 
 
 snap_pic()
