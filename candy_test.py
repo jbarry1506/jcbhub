@@ -80,6 +80,7 @@ def push_pic():
 
 snap_pic()
 move_file()
+sleep(2)
 push_pic()
 # server = jenkins.Jenkins(vars.jenkins_server, username=vars.jenkins_user, password=vars.jenkins_password)
 # pprint.pprint(server.get_all_jobs())
