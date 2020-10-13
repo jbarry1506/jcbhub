@@ -74,7 +74,7 @@ def reset_pennywise():
 
 
 def push_pic():
-    current_time = datetime.datetime.now
+    current_time = str(datetime.datetime.now)
     commit_message = "commit -m 'latest"+current_time
     subprocess.call(["git", "add -A"])
     subprocess.call(["git", commit_message])
