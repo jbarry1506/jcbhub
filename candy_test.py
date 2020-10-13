@@ -3,7 +3,7 @@
 from time import sleep
 from picamera import PiCamera
 import shutil
-import jenkins
+# import jenkins
 import pprint
 import vars
 
@@ -74,5 +74,5 @@ def reset_pennywise():
 
 
 snap_pic()
-server = jenkins.Jenkins(vars.jenkins_server, username=vars.jenkins_user, password=vars.jenkins_password)
-pprint.pprint(server.get_all_jobs())
+# server = jenkins.Jenkins(vars.jenkins_server, username=vars.jenkins_user, password=vars.jenkins_password)
+# pprint.pprint(server.get_all_jobs())
