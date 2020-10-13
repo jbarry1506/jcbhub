@@ -2,7 +2,6 @@
 
 import shutil
 import jenkins
-import pout
 import pprint
 import vars
 
