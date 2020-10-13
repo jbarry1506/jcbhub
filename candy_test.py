@@ -21,8 +21,6 @@ import vars
 # reset Pennywise
 # display website
 
-# shutil.move("/home/pi/Pictures/PiCam/teststill_gomiami.jpg", "/home/pi/Code/jcbhub/latest.jpg")
-
 
 def display_webpage():
     pass
@@ -62,7 +60,7 @@ def sound_effect():
 
 
 def move_file():
-    pass
+    shutil.move("/home/pi/Pictures/PiCam/latest.jpg", "/home/pi/Code/jcbhub/latest.jpg")
 
 
 def jenkins_build():
@@ -74,5 +72,6 @@ def reset_pennywise():
 
 
 snap_pic()
+move_file()
 # server = jenkins.Jenkins(vars.jenkins_server, username=vars.jenkins_user, password=vars.jenkins_password)
 # pprint.pprint(server.get_all_jobs())
