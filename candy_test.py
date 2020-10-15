@@ -25,7 +25,7 @@ import vars
 
 
 def display_webpage():
-    pass
+    webbrowser.open_new("https://jcbhub.com")
 
 
 def button_detect():
@@ -87,5 +87,6 @@ snap_pic()
 move_file()
 # sleep(2)
 push_pic()
+display_webpage()
 # server = jenkins.Jenkins(vars.jenkins_server, username=vars.jenkins_user, password=vars.jenkins_password)
 # pprint.pprint(server.get_all_jobs())
