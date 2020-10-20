@@ -7,7 +7,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText 
 from email.mime.base import MIMEBase 
 from email import encoders 
-# import jenkins
+import jenkins
 import vars
 
 # detect button push
@@ -146,8 +146,8 @@ def sound_effect():
     pass
 
 
-def move_file():
-    shutil.move("/home/pi/Pictures/PiCam/latest.jpg", "/home/pi/Code/jcbhub/latest.jpg")
+def move_file(move_from, move_to):
+    shutil.move(move_from, move_to)
 
 
 def jenkins_build():
@@ -173,10 +173,15 @@ def reset():
 
 
 # initialize pyglet needs to happen before the rest of the program
+original_pic_location = "/home/pi/Pictures/PiCam/latest.jpg"
+final_file_location = "/home/pi/Code/jcbhub/latest.jpg"
+
 snap_pic()
-move_file()
+move_file(original_pic_location, final_file_location)
 # sleep(2)
 push_pic()
-display_webpage()
+email_picture(final_file_location)
 server = jenkins.Jenkins(vars.jenkins_server, username=vars.jenkins_user, password=vars.xv)
 pprint.pprint(server.get_all_jobs())
+display_webpage()
+
