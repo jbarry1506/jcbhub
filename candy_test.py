@@ -151,6 +151,7 @@ def email_picture(fl):
 
 def countdown():
     # triggered from button detect
+    pass
 
 
 def candy_drop():
