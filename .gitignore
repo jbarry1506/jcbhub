@@ -104,3 +104,4 @@ venv.bak/
 .mypy_cache/
 .venv
 vars.py
+Python-3.7.0.tgz
