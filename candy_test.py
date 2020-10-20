@@ -7,7 +7,9 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText 
 from email.mime.base import MIMEBase 
 from email import encoders 
-import jenkins
+import webbrowser
+# unable to import Jenkins on rpi - insecure request warning
+# import jenkins
 import vars
 
 # detect button push
@@ -181,7 +183,7 @@ move_file(original_pic_location, final_file_location)
 # sleep(2)
 push_pic()
 email_picture(final_file_location)
-server = jenkins.Jenkins(vars.jenkins_server, username=vars.jenkins_user, password=vars.xv)
-pprint.pprint(server.get_all_jobs())
+# server = jenkins.Jenkins(vars.jenkins_server, username=vars.jenkins_user, password=vars.xv)
+# pprint.pprint(server.get_all_jobs())
 display_webpage()
 
