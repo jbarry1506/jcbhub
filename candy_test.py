@@ -2,6 +2,9 @@
 
 from time import sleep
 from picamera import PiCamera
+import RPi.GPIO as GPIO
+# In terminal, "sudo apt-get install vlc" and then "pip3 install python-vlc"
+import vlc
 import datetime, smtplib, shutil, subprocess, pprint
 from email.mime.multipart import MIMEMultipart 
 from email.mime.text import MIMEText 
@@ -28,13 +31,16 @@ import vars
 
 
 def display_webpage():
+    # doesn't appear to work in python 3.4
     webbrowser.open_new("https://jcbhub.com")
 
 
 def button_detect():
+    # set button press to 0
+    button_press = 0
     # detect input from button
     # signal to execute the rest of the program
-    pass
+    return button_press
 
 
 def logic_switch():
@@ -175,6 +181,15 @@ def reset():
 
 
 # initialize pyglet needs to happen before the rest of the program
+# set the initial button state to zero
+button_state = 0
+
+# Sets pin numbering scheme to BCM
+GPIO.setmode(GPIO.BCM) 
+# Logic output pin for the power strip (positive). Other power strip wire will go to GND.
+GPIO.setup(16, GPIO.OUT) 
+# Input from pushbutton, using internal pulldown resistor. Other button wire will connect to 5V pin. 
+GPIO.setup(18, GPIO.IN, pull_up_down = GPIO.PUD_DOWN) 
 original_pic_location = "/home/pi/Pictures/PiCam/latest.jpg"
 final_file_location = "/home/pi/Code/jcbhub/latest.jpg"
 
