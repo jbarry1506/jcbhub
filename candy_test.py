@@ -57,7 +57,7 @@ def logic_switch():
     print("logic switch activated")
     GPIO.output(16,1)
     sound_effect()
-    snap_pic()
+    camera.capture('/home/pi/Pictures/PiCam/latest.jpg')  
     sleep(2)
 
 
