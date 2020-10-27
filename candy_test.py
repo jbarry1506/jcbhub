@@ -3,7 +3,7 @@
 from time import sleep
 from picamera import PiCamera
 import RPi.GPIO as GPIO
-import datetime, smtplib, shutil, subprocess, pprint, , sys, os
+import datetime, smtplib, shutil, subprocess, pprint, sys, os
 # from email.mime.multipart import MIMEMultipart 
 # from email.mime.text import MIMEText 
 # from email.mime.base import MIMEBase 
