@@ -3,7 +3,7 @@
 from time import sleep
 from picamera import PiCamera
 import RPi.GPIO as GPIO
-import datetime, smtplib, shutil, subprocess, pprint, sys, os
+import datetime, smtplib, shutil, subprocess, pprint, sys, os, threading
 # from email.mime.multipart import MIMEMultipart 
 # from email.mime.text import MIMEText 
 # from email.mime.base import MIMEBase 
@@ -48,11 +48,6 @@ def button_press():
     camera.start_preview()
     # Camera warm-up time
     sleep(2)
-    sound_effect()
-    snap_pic()
-    sound_effect()
-    logic_switch()
-    snap_pic()
 
 
 # turn off 'normally on' 
@@ -195,12 +190,26 @@ def reset():
 # global vars
 # no buttons have been pressed, yet
 pressed = 0
+# set up threads
+# order as follows
+    # logic_switch()
+    # sound_effect()
+    # snap_pic()
+    # sound_effect()
+t1 = threading.Thread(target=sound_effect)
+t2 = threading.Thread(target=logic_switch)
+t3 = threading.Thread(target=snap_pic)
 
 try:
     while True:
         if GPIO.input(12) == 0:
             pressed = 1
             button_press()
+            t1.start()
+            t2.start()
+            t3.start()
+            t1.start()
+
             move_file(original_pic_location, final_file_location)
             # sleep(2)
             push_pic()
