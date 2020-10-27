@@ -3,13 +3,11 @@
 from time import sleep
 from picamera import PiCamera
 import RPi.GPIO as GPIO
-# In terminal, "sudo apt-get install vlc" and then "pip3 install python-vlc"
-import vlc
-import datetime, smtplib, shutil, subprocess, pprint
-from email.mime.multipart import MIMEMultipart 
-from email.mime.text import MIMEText 
-from email.mime.base import MIMEBase 
-from email import encoders 
+import datetime, smtplib, shutil, subprocess, pprint, , sys, os
+# from email.mime.multipart import MIMEMultipart 
+# from email.mime.text import MIMEText 
+# from email.mime.base import MIMEBase 
+# from email import encoders 
 import webbrowser
 # unable to import Jenkins on rpi - insecure request warning
 # import jenkins
@@ -29,18 +27,30 @@ import vars
 # reset Pennywise
 # display website
 
+# Sets pin numbering scheme to BCM
+GPIO.setmode(GPIO.BCM) 
+# Logic output pin for the power strip (positive). Other power strip wire will go to GND.
+GPIO.setup(16, GPIO.OUT) 
+# Input from pushbutton, using internal pulldown resistor. Other button wire will connect to 5V pin. 
+GPIO.setup(12, GPIO.IN, pull_up_down = GPIO.PUD_UP) 
+original_pic_location = "/home/pi/Pictures/PiCam/latest.jpg"
+final_file_location = "/home/pi/Code/jcbhub/latest.jpg"
 
+
+# display webpage not working on pi
 def display_webpage():
     # doesn't appear to work in python 3.4
     webbrowser.open_new("https://jcbhub.com")
 
 
-def button_detect():
-    # set button press to 0
-    button_press = 0
-    # detect input from button
+def button_press():
+    print("button pressed")
+    GPIO.output(16,1)
+    sleep(.5)
+    for r in range(2):
+        sound_effect()
+    sleep(2)
     # signal to execute the rest of the program
-    return button_press
 
 
 def logic_switch():
@@ -58,6 +68,7 @@ def snap_pic():
     camera.capture('/home/pi/Pictures/PiCam/latest.jpg')
 
 
+# taking this funciton out because picture is showing up as text.
 def email_picture(fl):
     # fl = file location
     em = vars.em
@@ -135,23 +146,24 @@ def email_picture(fl):
     server.quit() 
 
 
+# removed due to loop functionality errors
 def countdown():
-    # triggered from button detect
+    # triggered from button press
     pass
 
 
 def candy_drop():
-    # triggered from button_detect
+    # triggered from button_press
     pass
 
 
 def pennywise():
-    # triggered from button_detect
+    # triggered from button_press
     pass
 
 
 def sound_effect():
-    pass
+    os.system("aplay ./sounds/scream.wav")
 
 
 def move_file(move_from, move_to):
@@ -181,24 +193,30 @@ def reset():
 
 
 # initialize pyglet needs to happen before the rest of the program
-# set the initial button state to zero
-button_state = 0
+# global vars
+# no buttons have been pressed, yet
+pressed = 0
 
-# Sets pin numbering scheme to BCM
-GPIO.setmode(GPIO.BCM) 
-# Logic output pin for the power strip (positive). Other power strip wire will go to GND.
-GPIO.setup(16, GPIO.OUT) 
-# Input from pushbutton, using internal pulldown resistor. Other button wire will connect to 5V pin. 
-GPIO.setup(18, GPIO.IN, pull_up_down = GPIO.PUD_DOWN) 
-original_pic_location = "/home/pi/Pictures/PiCam/latest.jpg"
-final_file_location = "/home/pi/Code/jcbhub/latest.jpg"
+try:
+    while True:
+        if GPIO.input(12) == 0:
+            snap_pic()
+            button_press()
+            pressed = 1
+            move_file(original_pic_location, final_file_location)
+            # sleep(2)
+            push_pic()
+        elif pressed == 1:
+            GPIO.output(16,0)
+            print("Button released")
+            pressed = 0
+except KeyboardInterrupt:
+    # clean up settings
+    GPIO.cleanup()
 
-snap_pic()
-move_file(original_pic_location, final_file_location)
-# sleep(2)
-push_pic()
-email_picture(final_file_location)
+
+# email_picture(final_file_location)
 # server = jenkins.Jenkins(vars.jenkins_server, username=vars.jenkins_user, password=vars.xv)
 # pprint.pprint(server.get_all_jobs())
-display_webpage()
+# display_webpage()
 
