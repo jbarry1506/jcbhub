@@ -46,6 +46,7 @@ def display_webpage():
 def button_press():
     print("button pressed")
     camera.start_preview()
+    logic_switch()
     # Camera warm-up time
     sleep(2)
 
@@ -198,9 +199,7 @@ pressed = 0
     # sound_effect()
     # snap_pic()
     # sound_effect()
-t1 = threading.Thread(target=logic_switch)
-t2 = threading.Thread(target=sound_effect)
-t3 = threading.Thread(target=snap_pic)
+
 
 try:
     while True:
