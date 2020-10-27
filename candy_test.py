@@ -205,7 +205,12 @@ try:
     while True:
         if GPIO.input(12) == 0:
             pressed = 1
-            button_press()
+            # button_press()
+            print("button pressed")
+            camera.start_preview()
+            logic_switch()
+            # Camera warm-up time
+            sleep(2)
             sound_effect()
             move_file(original_pic_location, final_file_location)
             # sleep(2)
