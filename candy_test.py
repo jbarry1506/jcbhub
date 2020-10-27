@@ -199,7 +199,9 @@ pressed = 0
     # sound_effect()
     # snap_pic()
     # sound_effect()
-
+camera.start_preview()
+# Camera warm-up time
+sleep(2)
 
 try:
     while True:
@@ -207,10 +209,7 @@ try:
             pressed = 1
             # button_press()
             print("button pressed")
-            camera.start_preview()
             logic_switch()
-            # Camera warm-up time
-            sleep(2)
             sound_effect()
             move_file(original_pic_location, final_file_location)
             # sleep(2)
