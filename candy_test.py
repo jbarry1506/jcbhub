@@ -214,6 +214,9 @@ try:
             # sleep(2)
             push_pic()
         elif pressed == 1:
+            t1._stop()
+            t2._stop()
+            t3._stop()
             GPIO.output(16,0)
             print("Button released")
             pressed = 0
