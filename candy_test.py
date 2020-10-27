@@ -39,20 +39,20 @@ def display_webpage():
     webbrowser.open_new("https://jcbhub.com")
 
 
+# signal to execute the rest of the program
 def button_press():
     print("button pressed")
-    GPIO.output(16,1)
-    sleep(.5)
     for r in range(2):
         sound_effect()
-    sleep(2)
-    # signal to execute the rest of the program
+    logic_switch()
 
 
+# turn off 'normally on' 
+# turn on 'normally off'
 def logic_switch():
-    # turn off 'normally on' 
-    # turn on 'normally off'
-    pass
+    GPIO.output(16,1)
+    sleep(.5)
+    sleep(2)
 
 
 def snap_pic():
