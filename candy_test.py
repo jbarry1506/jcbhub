@@ -4,21 +4,13 @@ from time import sleep
 from picamera import PiCamera
 import RPi.GPIO as GPIO
 import datetime, shutil, subprocess, os
-
-# import webbrowser
-# unable to import Jenkins on rpi - insecure request warning
-# import jenkins
 import vars
 
-
-# trigger camera
 # trigger pennywise servo
 # trigger sound effect
 # trigger candy drop
 # move file
-# start jenkins build
-# reset Pennywise
-# display website
+
 
 # Sets pin numbering scheme to BCM
 GPIO.setmode(GPIO.BCM) 
@@ -31,12 +23,6 @@ final_file_location = "/home/pi/Code/jcbhub/latest.jpg"
 # set up camera
 camera = PiCamera()
 camera.resolution = (1024, 768)
-
-
-# display webpage not working on pi
-def display_webpage():
-    # doesn't appear to work in python 3.4
-    webbrowser.open_new("https://jcbhub.com")
 
 
 # signal to execute the rest of the program
@@ -80,10 +66,6 @@ def move_file(move_from, move_to):
     shutil.move(move_from, move_to)
 
 
-def jenkins_build():
-    pass
-
-
 def reset_pennywise():
     pass
 
@@ -113,9 +95,9 @@ pressed = 0
     # snap_pic()
     # sound_effect()
 
-# camera.start_preview()
+camera.start_preview()
 # Camera warm-up time
-# sleep(2)
+sleep(2)
 
 try:
     while True:
