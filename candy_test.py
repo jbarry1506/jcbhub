@@ -196,8 +196,8 @@ pressed = 0
     # sound_effect()
     # snap_pic()
     # sound_effect()
-t1 = threading.Thread(target=sound_effect)
-t2 = threading.Thread(target=logic_switch)
+t1 = threading.Thread(target=logic_switch)
+t2 = threading.Thread(target=sound_effect)
 t3 = threading.Thread(target=snap_pic)
 
 try:
@@ -206,17 +206,17 @@ try:
             pressed = 1
             button_press()
             t1.start()
-            sleep(.25)
+            # sleep(.25)
             t2.start()
             t3.start()
+            t1.join()
+            t2.join()
+            t3.join()
             sound_effect()
             move_file(original_pic_location, final_file_location)
             # sleep(2)
             push_pic()
         elif pressed == 1:
-            t1._stop()
-            t2._stop()
-            t3._stop()
             GPIO.output(16,0)
             print("Button released")
             pressed = 0
