@@ -206,10 +206,10 @@ try:
             pressed = 1
             button_press()
             t1.start()
+            sleep(.25)
             t2.start()
             t3.start()
-            t1.start()
-
+            sound_effect()
             move_file(original_pic_location, final_file_location)
             # sleep(2)
             push_pic()
