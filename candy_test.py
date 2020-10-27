@@ -199,9 +199,10 @@ pressed = 0
     # sound_effect()
     # snap_pic()
     # sound_effect()
-camera.start_preview()
+    
+# camera.start_preview()
 # Camera warm-up time
-sleep(2)
+# sleep(2)
 
 try:
     while True:
