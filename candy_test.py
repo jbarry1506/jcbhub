@@ -31,6 +31,9 @@ GPIO.setup(16, GPIO.OUT)
 GPIO.setup(12, GPIO.IN, pull_up_down = GPIO.PUD_UP) 
 original_pic_location = "/home/pi/Pictures/PiCam/latest.jpg"
 final_file_location = "/home/pi/Code/jcbhub/latest.jpg"
+# set up camera
+camera = PiCamera()
+camera.resolution = (1024, 768)
 
 
 # display webpage not working on pi
@@ -42,25 +45,24 @@ def display_webpage():
 # signal to execute the rest of the program
 def button_press():
     print("button pressed")
+    camera.start_preview()
+    # Camera warm-up time
+    sleep(2)
     for r in range(2):
         sound_effect()
     logic_switch()
+    snap_pic()
 
 
 # turn off 'normally on' 
 # turn on 'normally off'
 def logic_switch():
+    print("logic switch activated")
     GPIO.output(16,1)
-    sleep(.5)
     sleep(2)
 
 
 def snap_pic():
-    camera = PiCamera()
-    camera.resolution = (1024, 768)
-    camera.start_preview()
-    # Camera warm-up time
-    sleep(2)
     camera.capture('/home/pi/Pictures/PiCam/latest.jpg')
     camera.stop_preview()
     camera.close()
@@ -198,9 +200,8 @@ pressed = 0
 try:
     while True:
         if GPIO.input(12) == 0:
-            snap_pic()
-            button_press()
             pressed = 1
+            button_press()
             move_file(original_pic_location, final_file_location)
             # sleep(2)
             push_pic()
