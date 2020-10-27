@@ -55,6 +55,8 @@ def button_press():
 def logic_switch():
     print("logic switch activated")
     GPIO.output(16,1)
+    sound_effect()
+    snap_pic()
     sleep(2)
 
 
@@ -205,19 +207,6 @@ try:
         if GPIO.input(12) == 0:
             pressed = 1
             button_press()
-            if t1.is_alive():
-                t1.run()
-            else:
-                t1.start()
-            # sleep(.25)
-            if t2.is_alive():
-                t2.run()
-            else:
-                t2.start()
-            if t3.is_alive():
-                t3.run()
-            else:
-                t3.start()
             sound_effect()
             move_file(original_pic_location, final_file_location)
             # sleep(2)
