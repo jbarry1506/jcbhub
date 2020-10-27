@@ -64,8 +64,6 @@ def logic_switch():
 
 def snap_pic():
     camera.capture('/home/pi/Pictures/PiCam/latest.jpg')
-    camera.stop_preview()
-    camera.close()
 
 
 # taking this funciton out because picture is showing up as text.
