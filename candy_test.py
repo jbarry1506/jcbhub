@@ -48,8 +48,9 @@ def button_press():
     camera.start_preview()
     # Camera warm-up time
     sleep(2)
-    for r in range(2):
-        sound_effect()
+    sound_effect()
+    snap_pic()
+    sound_effect()
     logic_switch()
     snap_pic()
 
