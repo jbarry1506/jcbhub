@@ -101,8 +101,11 @@ sleep(2)
 
 try:
     while True:
+        for _ in range(2):
+            sleep(1)
+            pressed = GPIO.input(12)
         if GPIO.input(12) == 0:
-            pressed = 1
+            # pressed = 1
             # button_press()
             print("button pressed")
             logic_switch()
