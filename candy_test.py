@@ -13,11 +13,7 @@ import webbrowser
 # import jenkins
 import vars
 
-# detect button push
-# display countdown on screen
-# trigger logic power
-    # 10 seconds
-    # strobe light
+
 # trigger camera
 # trigger pennywise servo
 # trigger sound effect
@@ -66,6 +62,8 @@ def snap_pic():
     # Camera warm-up time
     sleep(2)
     camera.capture('/home/pi/Pictures/PiCam/latest.jpg')
+    camera.stop_preview()
+    camera.close()
 
 
 # taking this funciton out because picture is showing up as text.
