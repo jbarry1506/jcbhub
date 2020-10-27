@@ -56,12 +56,10 @@ def logic_switch():
     print("logic switch activated")
     GPIO.output(16,1)
     sleep(2)
-    return 0
 
 
 def snap_pic():
     camera.capture('/home/pi/Pictures/PiCam/latest.jpg')
-    return 0
 
 
 # taking this funciton out because picture is showing up as text.
@@ -160,7 +158,6 @@ def pennywise():
 
 def sound_effect():
     os.system("aplay ./sounds/scream.wav")
-    return 0
 
 
 def move_file(move_from, move_to):
