@@ -17,7 +17,7 @@ GPIO.setmode(GPIO.BCM)
 # Logic output pin for the power strip (positive). Other power strip wire will go to GND.
 GPIO.setup(16, GPIO.OUT) 
 # Input from pushbutton, using internal pulldown resistor. Other button wire will connect to 5V pin. 
-GPIO.setup(12, GPIO.IN, pull_up_down = GPIO.PUD_UP) 
+GPIO.setup(26, GPIO.IN, pull_up_down = GPIO.PUD_UP) 
 original_pic_location = "/home/pi/Pictures/PiCam/latest.jpg"
 final_file_location = "/home/pi/Code/jcbhub/latest.jpg"
 # set up camera
@@ -101,9 +101,9 @@ sleep(2)
 
 try:
     while True:
-        if GPIO.input(12) == 0:
-            # pressed = 1
-            # button_press()
+        if GPIO.input(26) == 0:
+            pressed = 1
+            button_press()
             print("button pressed")
             logic_switch()
             sound_effect()
