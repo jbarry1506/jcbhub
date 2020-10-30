@@ -103,9 +103,9 @@ try:
             pressed = 1
             button_press()
 #            print("button pressed")
-            # sound_effect()
+            sound_effect()
             move_file(original_pic_location, final_file_location)
-            # sleep(2)
+            sleep(2)
             push_pic()
         elif pressed == 1:
             GPIO.output(16,0)
