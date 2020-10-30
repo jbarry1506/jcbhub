@@ -28,7 +28,7 @@ camera.resolution = (1024, 768)
 # signal to execute the rest of the program
 def button_press():
     print("button pressed")
-    logic_switch()
+    # logic_switch()
 
 
 # turn off 'normally on' 
@@ -36,10 +36,11 @@ def button_press():
 def logic_switch():
     print("logic switch activated")
     GPIO.output(16,1)
-    print("The state of GPIO 16 is {}".format(GPIO.input(16)))
-    sound_effect()
-    camera.capture('/home/pi/Pictures/PiCam/latest.jpg')  
+    # print("The state of GPIO 16 is {}".format(GPIO.input(16)))
+    # sound_effect()
+    # camera.capture('/home/pi/Pictures/PiCam/latest.jpg')  
     sleep(2)
+    GPIO.output(16,0)
 
 
 def snap_pic():
@@ -101,14 +102,16 @@ try:
     while True:
         if GPIO.input(26) == 0:
             pressed = 1
-            button_press()
+            # button_press()
 #            print("button pressed")
             sound_effect()
+            logic_switch()
+            snap_pic()
             move_file(original_pic_location, final_file_location)
             sleep(2)
             push_pic()
         elif pressed == 1:
-            GPIO.output(16,0)
+            # GPIO.output(16,0)
 #            print("Button released")
             pressed = 0
         else:
