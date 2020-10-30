@@ -28,10 +28,7 @@ camera.resolution = (1024, 768)
 # signal to execute the rest of the program
 def button_press():
     print("button pressed")
-    camera.start_preview()
     logic_switch()
-    # Camera warm-up time
-    sleep(2)
 
 
 # turn off 'normally on' 
@@ -39,6 +36,7 @@ def button_press():
 def logic_switch():
     print("logic switch activated")
     GPIO.output(16,1)
+    print("The state of GPIO 16 is {}".format(GPIO.input(16)))
     sound_effect()
     camera.capture('/home/pi/Pictures/PiCam/latest.jpg')  
     sleep(2)
@@ -105,8 +103,7 @@ try:
             pressed = 1
             button_press()
 #            print("button pressed")
-            logic_switch()
-            sound_effect()
+            # sound_effect()
             move_file(original_pic_location, final_file_location)
             # sleep(2)
             push_pic()
