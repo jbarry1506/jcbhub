@@ -17,7 +17,7 @@ GPIO.setmode(GPIO.BCM)
 # Logic output pin for the power strip (positive). Other power strip wire will go to GND.
 GPIO.setup(16, GPIO.OUT) 
 # Input from pushbutton, using internal pulldown resistor. Other button wire will connect to 5V pin. 
-GPIO.setup(12, GPIO.IN, pull_up_down = GPIO.PUD_UP) 
+GPIO.setup(26, GPIO.IN, pull_up_down = GPIO.PUD_UP) 
 original_pic_location = "/home/pi/Pictures/PiCam/latest.jpg"
 final_file_location = "/home/pi/Code/jcbhub/latest.jpg"
 # set up camera
@@ -33,10 +33,7 @@ def copy_pic(pic_source, pic_dest):
 # signal to execute the rest of the program
 def button_press():
     print("button pressed")
-    camera.start_preview()
-    logic_switch()
-    # Camera warm-up time
-    sleep(2)
+    # logic_switch()
 
 
 # turn off 'normally on' 
@@ -44,12 +41,19 @@ def button_press():
 def logic_switch():
     print("logic switch activated")
     GPIO.output(16,1)
+<<<<<<< HEAD
     sound_effect()
     pi_cam_fileloc = '/home/pi/Pictures/PiCam/'
     camera.capture(pi_cam_fileloc+'latest.jpg') 
     pic_save_name = pi_cam_fileloc+datetime.datetime.now()+'.jpg'
     copy_pic(pi_cam_fileloc+'latest.jpg', pic_save_name) 
+=======
+    # print("The state of GPIO 16 is {}".format(GPIO.input(16)))
+    # sound_effect()
+    # camera.capture('/home/pi/Pictures/PiCam/latest.jpg')  
+>>>>>>> 37d420e37bd3d960c461979ba4c57cd6d3506504
     sleep(2)
+    GPIO.output(16,0)
 
 
 def snap_pic():
@@ -109,19 +113,24 @@ sleep(2)
 
 try:
     while True:
-        if GPIO.input(12) == 0:
-            # pressed = 1
+        if GPIO.input(26) == 0:
+            pressed = 1
             # button_press()
-            print("button pressed")
-            logic_switch()
+#            print("button pressed")
             sound_effect()
+            logic_switch()
+            snap_pic()
             move_file(original_pic_location, final_file_location)
+<<<<<<< HEAD
             # sleep(2)
             copy_pic()
+=======
+            sleep(2)
+>>>>>>> 37d420e37bd3d960c461979ba4c57cd6d3506504
             push_pic()
         elif pressed == 1:
-            GPIO.output(16,0)
-            print("Button released")
+            # GPIO.output(16,0)
+#            print("Button released")
             pressed = 0
         else:
             continue
