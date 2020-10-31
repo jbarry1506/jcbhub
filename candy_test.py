@@ -113,7 +113,7 @@ try:
 #            print("button pressed")
             sound_effect()
             logic_switch()
-            snap_pic()
+            # snap_pic()
             move_file(original_pic_location, final_file_location)
             # sleep(2)
             push_pic()
