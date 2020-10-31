@@ -44,7 +44,7 @@ def logic_switch():
     sound_effect()
     pi_cam_fileloc = '/home/pi/Pictures/PiCam/'
     camera.capture(pi_cam_fileloc+'latest.jpg') 
-    pic_save_name = pi_cam_fileloc+datetime.datetime.now()+'.jpg'
+    pic_save_name = pi_cam_fileloc+str(datetime.datetime.now())+'.jpg'
     copy_pic(pi_cam_fileloc+'latest.jpg', pic_save_name) 
     sleep(2)
     GPIO.output(16,0)
