@@ -41,17 +41,11 @@ def button_press():
 def logic_switch():
     print("logic switch activated")
     GPIO.output(16,1)
-<<<<<<< HEAD
     sound_effect()
     pi_cam_fileloc = '/home/pi/Pictures/PiCam/'
     camera.capture(pi_cam_fileloc+'latest.jpg') 
     pic_save_name = pi_cam_fileloc+datetime.datetime.now()+'.jpg'
     copy_pic(pi_cam_fileloc+'latest.jpg', pic_save_name) 
-=======
-    # print("The state of GPIO 16 is {}".format(GPIO.input(16)))
-    # sound_effect()
-    # camera.capture('/home/pi/Pictures/PiCam/latest.jpg')  
->>>>>>> 37d420e37bd3d960c461979ba4c57cd6d3506504
     sleep(2)
     GPIO.output(16,0)
 
