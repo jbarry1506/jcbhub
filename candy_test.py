@@ -115,12 +115,7 @@ try:
             logic_switch()
             snap_pic()
             move_file(original_pic_location, final_file_location)
-<<<<<<< HEAD
             # sleep(2)
-            copy_pic()
-=======
-            sleep(2)
->>>>>>> 37d420e37bd3d960c461979ba4c57cd6d3506504
             push_pic()
         elif pressed == 1:
             # GPIO.output(16,0)
