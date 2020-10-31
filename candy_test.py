@@ -25,6 +25,11 @@ camera = PiCamera()
 camera.resolution = (1024, 768)
 
 
+# copy and save picture
+def copy_pic(pic_source, pic_dest):
+    shutil.copyfile(pic_source, pic_dest)
+
+
 # signal to execute the rest of the program
 def button_press():
     print("button pressed")
@@ -40,7 +45,10 @@ def logic_switch():
     print("logic switch activated")
     GPIO.output(16,1)
     sound_effect()
-    camera.capture('/home/pi/Pictures/PiCam/latest.jpg')  
+    pi_cam_fileloc = '/home/pi/Pictures/PiCam/'
+    camera.capture(pi_cam_fileloc+'latest.jpg') 
+    pic_save_name = pi_cam_fileloc+datetime.datetime.now()+'.jpg'
+    copy_pic(pi_cam_fileloc+'latest.jpg', pic_save_name) 
     sleep(2)
 
 
@@ -71,7 +79,7 @@ def reset_pennywise():
 
 
 def push_pic():
-    current_time = str(datetime.datetime.now)
+    current_time = str(datetime.datetime.now())
     commit_message = "commit -m 'latest"+current_time
     print(commit_message)
 
@@ -109,6 +117,7 @@ try:
             sound_effect()
             move_file(original_pic_location, final_file_location)
             # sleep(2)
+            copy_pic()
             push_pic()
         elif pressed == 1:
             GPIO.output(16,0)
