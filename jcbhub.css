@@ -1,11 +1,11 @@
 html {
-    background-color: coral;
+    background-color: rgb(243, 243, 235);
 }
 h1 {
     align-content: center;
 }
 .header {
-    background-color: chocolate;
+    background-color: rgb(210, 168, 30);
     height: 500px;
     width: auto;
     padding: 10px;
