@@ -1,11 +1,11 @@
 html {
-    background-color: rgb(243, 243, 235);
+    background-color: whitesmoke;
 }
 h1 {
     align-content: center;
 }
 .header {
-    background-color: rgb(238, 236, 228);
+    background-color:greenyellow;
     height: 500px;
     width: auto;
     padding: 10px;
